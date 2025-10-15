@@ -484,6 +484,26 @@ return this.handleError(error);
 
  
 
+async endEvent(eventId: string) { 
+
+try { 
+
+const res = await this.client.put('/api/event/end', { eventId }); 
+
+ 
+
+return res.data as ApiResponse<EventResponse>; 
+
+} catch (error: any) { 
+
+return this.handleError(error); 
+
+} 
+
+} 
+
+ 
+
 createReply(status: StatusTypes = 'success', message?: string, data?: any): ApiResponse<any> { 
 
 return { status, message, data }; 
