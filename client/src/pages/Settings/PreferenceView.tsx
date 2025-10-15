@@ -6,6 +6,8 @@ import StyledTextField from '@/components/StyledTextField';
 
 import ThemeModeToggle from '@/components/ThemeModeToggle'; 
 
+import UserProfile from '@/components/UserProfile'; 
+
 import { usePreferences } from '@/context/PreferencesContext'; 
 
 import { createDropdownOptions, isChromeExt, populateDurationOptions, populateRoomCapacity, renderError } from '@/helpers/utility'; 
@@ -232,6 +234,10 @@ toast.success('Saved successfully!');
 
 return ( 
 
+<> 
+
+<UserProfile /> 
+
 <Box 
 
 mx={2} 
@@ -247,6 +253,16 @@ borderRadius: 2,
 }} 
 
 > 
+
+<Box sx={{ px: 1, pt: 2, pb: 1 }}> 
+
+<Typography variant="body2" color="text.secondary" sx={{ mb: 1, ml: 1 }}> 
+
+Preferences 
+
+</Typography> 
+
+</Box> 
 
 <Box 
 
@@ -496,8 +512,8 @@ Save
 
 </Box> 
 
+</> 
+
 ); 
 
 } 
-
- 
