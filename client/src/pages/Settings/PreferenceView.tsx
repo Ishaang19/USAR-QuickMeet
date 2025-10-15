@@ -80,7 +80,15 @@ const durations = populateDurationOptions();
 
 useEffect(() => { 
 
+let isMounted = true; 
+
+ 
+
 const init = (floors: string[], capacities: string[]) => { 
+
+if (!isMounted) return; 
+
+ 
 
 const floorOptions = createDropdownOptions(floors); 
 
@@ -122,6 +130,12 @@ let floors = [];
 
 let res = await api.getFloors(); 
 
+ 
+
+if (!isMounted) return; 
+
+ 
+
 const { data, status } = res || {}; 
 
  
@@ -142,6 +156,12 @@ floors = data;
 
 res = await api.getMaxSeatCount(); 
 
+ 
+
+if (!isMounted) return; 
+
+ 
+
 const capacities = populateRoomCapacity(res?.data || 0); 
 
  
@@ -149,6 +169,8 @@ const capacities = populateRoomCapacity(res?.data || 0);
 init(floors, capacities); 
 
 } catch (error: any) { 
+
+if (!isMounted) return; 
 
 renderError(error, navigate); 
 
@@ -159,6 +181,14 @@ renderError(error, navigate);
  
 
 loadInitialData(); 
+
+ 
+
+return () => { 
+
+isMounted = false; 
+
+}; 
 
 }, []); 
 
